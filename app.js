@@ -2,7 +2,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-
 const hostname = "127.0.0.1";
 const port = 8080;
 
@@ -16,7 +15,6 @@ var app = express();
 // }
 
 // app.use(logger);
-
 app.use(bodyParser.json({ type: 'application/*+json' }))
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -44,6 +42,20 @@ app.get('/',(req,res)=>{
         title: people,
         body: peopleVerbose
     });
+});
+
+app.post("/users/add",(req,res) =>{
+    var newpersonVerbose = [
+        {
+            name: req.body.name,
+            last: req.body.last
+        }
+    ]
+    console.log(newpersonVerbose);
+    res.render('index',{
+        title: people,
+        body: newpersonVerbose
+    })
 });
 
 app.listen(port,hostname,() =>{
