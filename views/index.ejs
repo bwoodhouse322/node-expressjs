@@ -1,3 +1,8 @@
 <% include partials/header %>
 <h1><%= title %></h1>
+    <ul>
+    <% body.forEach( person =>{ %>
+        <li><%= person.last %> </li>
+   <% }) %>
+    </ul>
 <%  include partials/footer %>

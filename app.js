@@ -27,11 +27,22 @@ app.set("views",path.join(__dirname,"views"));
 // app.use(express.static(path.join(__dirname,"client")));
 
 var people = ["greg","ben","jeff"];
+var peopleVerbose = [
+    {
+        name :"jenny",
+        last : "jennyagain"    
+    },
+    {
+        name : "johnny",
+        last : "johnnyagain"
+    }
+];
 
 
 app.get('/',(req,res)=>{
     res.render("index",{
-        title: people
+        title: people,
+        body: peopleVerbose
     });
 });
 
