@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const hostname = "127.0.0.1";
 const port = 8080;
+const mongojs = require("mongojs");
 
+var db =mongojs("app",["people"]);
 var app = express();
 
 // var logger = (req,res,next) =>{
@@ -38,10 +40,16 @@ var peopleVerbose = [
 
 
 app.get('/',(req,res)=>{
-    res.render("index",{
-        title: people,
-        body: peopleVerbose
-    });
+    db.people.find((error,docs)=>{
+        console.log(docs);
+        peopleVerbose = docs;
+        res.render("index",{
+            title: people,
+            body: peopleVerbose
+        });
+    })
+
+
 });
 
 app.post("/users/add",(req,res) =>{
